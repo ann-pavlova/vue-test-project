@@ -39,6 +39,7 @@ module.exports = {
                 'e' // for e.returnvalue
             ]
         }],
+        'semi': ['error', 'always'],
         'import/first': [ 'error', 'DISABLE-absolute-first' ],
         'indent': ['error', 4],
         'comma-dangle': ['error', 'never'],
@@ -49,4 +50,4 @@ module.exports = {
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }
-}
+};
