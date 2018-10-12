@@ -39,6 +39,7 @@ module.exports = {
                 'e' // for e.returnvalue
             ]
         }],
+        'max-lines-per-function': ["error", {"max": 120, "skipBlankLines": true, "skipComments": true, }],
         'semi': ['error', 'always'],
         'import/first': [ 'error', 'DISABLE-absolute-first' ],
         'indent': ['error', 4],
