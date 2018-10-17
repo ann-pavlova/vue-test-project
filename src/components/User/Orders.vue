@@ -54,8 +54,7 @@
         },
         methods: {
             markDone(order) {
-                order.done = true
-
+                order.done = true;
             }
         }
     };

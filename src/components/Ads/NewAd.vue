@@ -60,16 +60,16 @@
             };
         },
         methods: {
-            createAdd () {
-                if(this.$refs.form.validate()) {
+            createAdd() {
+                if (this.$refs.form.validate()) {
                     const ad = {
                         title: this.title,
                         descr: this.descr,
-                        promo: this.promo
+                        promo: this.promo,
+                        imageSrc: 'https://cdn-images-1.medium.com/max/2000/1*pofor4p-ig072eaChITOYQ.jpeg'
                     };
-                    console.log(ad);
+                    this.$store.dispatch('createAd', ad);
                 }
-
             }
         }
     };

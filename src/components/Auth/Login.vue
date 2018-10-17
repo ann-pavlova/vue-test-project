@@ -29,7 +29,7 @@
                     </v-card-text>
                     <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" :disabled="!valid" @click="onSubmit">Login</v-btn>
+                        <v-btn color="primary" :disabled="!valid || loading" :loading="loading" @click="onSubmit">Login</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-flex>
@@ -54,6 +54,11 @@
                 ]
             };
         },
+        computed: {
+            loading() {
+                return this.$store.getters.loading;
+            }
+        },
         methods: {
             onSubmit() {
                 if (this.$refs.form.validate()) {
@@ -62,7 +67,11 @@
                         password: this.password
                     };
 
-                    console.log(user);
+                    this.$store.dispatch('loginUser', user)
+                        .then(() => {
+                            this.$router.push('/');
+                        })
+                        .catch(() => {});
                 }
             }
         }

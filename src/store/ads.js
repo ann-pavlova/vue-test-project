@@ -22,19 +22,29 @@ export default {
             }
         ]
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        createAd(state, payload) {
+            state.ads.push(payload);
+        }
+    },
+    actions: {
+        createAd({ commit }, payload) {
+            payload.id = Math.floor(Math.random() * 6 + 1).toString();
+            commit('createAd', payload);
+        }
+    },
     getters: {
         ads(state) {
             return state.ads;
         },
         promoAds(state) {
-            return state.ads.filter(ad => {
-                return ad.promo === true
-            })
+            return state.ads.filter(ad => ad.promo === true);
         },
         myAds(state) {
-            return state.ads
+            return state.ads;
+        },
+        adById(state) {
+            return adId => state.ads.find(ad => ad.id === adId);
         }
     }
-}
+};

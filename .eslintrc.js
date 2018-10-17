@@ -9,45 +9,19 @@ module.exports = {
     env: {
         browser: true,
     },
-    extends: 'airbnb-base',
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    extends: 'standard',
     // required to lint *.vue files
     plugins: [
         'html'
     ],
-    // check if imports actually resolve
-    settings: {
-        'import/resolver': {
-            webpack: {
-                config: 'build/webpack.base.conf.js'
-            }
-        }
-    },
     // add your custom rules here
     rules: {
-        // don't require .vue extension when importing
-        'import/extensions': ['error', 'always', {
-            js: 'never',
-            vue: 'never'
-        }],
-        // disallow reassignment of function parameters
-        // disallow parameter object manipulation except for specific exclusions
-        'no-param-reassign': ['error', {
-            props: true,
-            ignorePropertyModificationsFor: [
-                'state', // for vuex state
-                'acc', // for reduce accumulators
-                'e' // for e.returnvalue
-            ]
-        }],
-        'max-lines-per-function': ["error", {"max": 120, "skipBlankLines": true, "skipComments": true, }],
-        'semi': ['error', 'always'],
-        'import/first': [ 'error', 'DISABLE-absolute-first' ],
         'indent': ['error', 4],
-        'comma-dangle': ['error', 'never'],
-        // allow optionalDependencies
-        'import/no-extraneous-dependencies': ['error', {
-            optionalDependencies: ['test/unit/index.js']
-        }],
+        'semi': ['error', 'always'],
+        'space-before-function-paren': ['error', 'never'],
+        // allow async-await
+        'generator-star-spacing': 'off',
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     }
