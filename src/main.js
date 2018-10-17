@@ -25,5 +25,11 @@ new Vue({
             storageBucket: '',
             messagingSenderId: '674485206957'
         });
+
+        fb.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.$store.dispatch('autoLoginUser', user);
+            }
+        });
     }
 });
