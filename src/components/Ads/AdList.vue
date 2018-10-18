@@ -6,9 +6,9 @@
                 <v-card class="elavation-10 mb-3" v-for="ad in myAds" :key="ad.id">
                     <v-layout row>
                         <v-flex xs4>
-                            <v-card-media :src="ad.imageSrc" height="160px">
+                            <v-img :src="ad.imageSrc" height="160px">
 
-                            </v-card-media>
+                            </v-img>
                         </v-flex>
                         <v-flex xs8>
                             <v-card-text>

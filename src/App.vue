@@ -64,7 +64,6 @@
                 color="error"
                 @input="closeError"
                 value="true"
-                v-if="isUserLoggedIn"
             >
                 {{error}}
                 <v-btn

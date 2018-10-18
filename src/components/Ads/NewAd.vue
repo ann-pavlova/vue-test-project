@@ -41,7 +41,7 @@
                 <v-layout row>
                     <v-flex xs12>
                         <v-spacer></v-spacer>
-                        <v-btn :disabled="!valid" class="success" @click="createAdd">Create add</v-btn>
+                        <v-btn :loading="loading" :disabled="!valid || loading" class="success" @click="createAdd">Create add</v-btn>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -59,6 +59,11 @@
                 valid: false
             };
         },
+        computed: {
+            loading() {
+                return this.$store.getters.loading;
+            }
+        },
         methods: {
             createAdd() {
                 if (this.$refs.form.validate()) {
@@ -68,7 +73,11 @@
                         promo: this.promo,
                         imageSrc: 'https://cdn-images-1.medium.com/max/2000/1*pofor4p-ig072eaChITOYQ.jpeg'
                     };
-                    this.$store.dispatch('createAd', ad);
+                    this.$store.dispatch('createAd', ad)
+                        .then(() => {
+                            this.$router.push('/list');
+                        })
+                        .catch(() => {});
                 }
             }
         }

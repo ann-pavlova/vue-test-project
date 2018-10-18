@@ -3,7 +3,7 @@
         <v-layout row>
             <v-flex xs12>
                 <v-card>
-                    <v-card-media height="300" :src="ad.imageSrc"></v-card-media>
+                    <v-img height="300" :src="ad.imageSrc"></v-img>
                     <v-card-text>
                         <h1 class="text--primary">{{ad.title}}</h1>
                         <p>{{ad.descr}}</p>
