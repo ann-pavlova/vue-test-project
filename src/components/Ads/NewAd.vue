@@ -23,12 +23,13 @@
                 </v-form>
                 <v-layout row class="mb-3">
                     <v-flex xs12>
-                        <v-btn class="warning">Upload image <v-icon right dark>cloud_upload</v-icon></v-btn>
+                        <v-btn class="warning" @click="triggerUpload">Upload image <v-icon right dark>cloud_upload</v-icon></v-btn>
+                        <input ref="fileInput" type="file" style="display: none" accept="image/*" @change="onFileChange"/>
                     </v-flex>
                 </v-layout>
                 <v-layout row>
                     <v-flex xs12>
-                        <img src="" height="150" alt="">
+                        <img :src="imageSrc" height="150" alt="" v-if="imageSrc">
                     </v-flex>
                 </v-layout>
                 <v-layout row>
@@ -41,7 +42,7 @@
                 <v-layout row>
                     <v-flex xs12>
                         <v-spacer></v-spacer>
-                        <v-btn :loading="loading" :disabled="!valid || loading" class="success" @click="createAdd">Create add</v-btn>
+                        <v-btn :loading="loading" :disabled="!valid || !image || loading" class="success" @click="createAdd">Create add</v-btn>
                     </v-flex>
                 </v-layout>
             </v-flex>
@@ -56,7 +57,9 @@
                 title: '',
                 descr: '',
                 promo: false,
-                valid: false
+                valid: false,
+                image: null,
+                imageSrc: ''
             };
         },
         computed: {
@@ -66,12 +69,12 @@
         },
         methods: {
             createAdd() {
-                if (this.$refs.form.validate()) {
+                if (this.$refs.form.validate() && this.image) {
                     const ad = {
                         title: this.title,
                         descr: this.descr,
                         promo: this.promo,
-                        imageSrc: 'https://cdn-images-1.medium.com/max/2000/1*pofor4p-ig072eaChITOYQ.jpeg'
+                        image: this.image
                     };
                     this.$store.dispatch('createAd', ad)
                         .then(() => {
@@ -79,6 +82,20 @@
                         })
                         .catch(() => {});
                 }
+            },
+            triggerUpload() {
+                this.$refs.fileInput.click();
+            },
+            onFileChange(event) {
+                const file = event.target.files[0];
+
+                const reader = new FileReader();
+                reader.onload = e => {
+                    this.imageSrc = reader.result;
+                };
+                reader.readAsDataURL(file);
+                this.image = file;
+                console.log(file);
             }
         }
     };
