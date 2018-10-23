@@ -3,11 +3,12 @@ import App from './App';
 import router from './router';
 import store from './store';
 import Vuetify from 'vuetify';
+import BuyModalComponents from '@/components/Shared/BuyModal';
 import * as fb from 'firebase';
 import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
-
+Vue.component('app-buy-modal', BuyModalComponents);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
